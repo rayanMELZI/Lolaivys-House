@@ -1,0 +1,7 @@
+.navbar {
+  background-color: rgb(11, 158, 3) !important;
+  border: none;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  color: aliceblue;
+}

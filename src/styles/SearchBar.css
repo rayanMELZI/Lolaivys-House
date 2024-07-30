@@ -1,0 +1,38 @@
+.search-bar {
+  padding: 20px 90px 0 0;
+  justify-content: end;
+  gap: 20px;
+}
+
+.search-bar > div {
+  gap: 6px;
+}
+
+.search-bar input {
+  width: 350px;
+  background-color: rgb(11, 158, 3) !important;
+  color: #ffff !important;
+  opacity: 0.9;
+}
+.search-bar input::placeholder {
+  color: #ffff !important;
+}
+.search-bar input:focus {
+  opacity: 1;
+}
+
+.search-bar button {
+  background-color: rgba(11, 158, 3, 0.9);
+}
+.search-bar button:active {
+  background-color: rgba(11, 158, 3, 1);
+}
+
+.categories {
+  background-color: rgb(11, 158, 3);
+  color: #ffff;
+  opacity: 0.7;
+}
+.categories:focus {
+  opacity: 1;
+}
