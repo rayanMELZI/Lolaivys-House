@@ -3,5 +3,6 @@
   border: none;
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
+  border-radius: 0 0 7px 7px !important;
   color: aliceblue;
 }
