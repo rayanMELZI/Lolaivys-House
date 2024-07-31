@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/NavbarWithMegaMenu.css";
+import "./NavbarWithMegaMenu.css";
 import {
   Navbar,
   Collapse,
@@ -105,80 +105,80 @@ const navListMenuItems = [
   },
 ];
 
-function NavListMenu() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+// function NavListMenu() {
+//   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+//   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
-  const renderItems = navListMenuItems.map(
-    ({ icon, title, description, color }, key) => (
-      <a href="#" key={key}>
-        <MenuItem className="flex items-center gap-3 rounded-lg">
-          <div className={`rounded-lg p-5 ${colors[color]}`}>
-            {React.createElement(icon, {
-              strokeWidth: 2,
-              className: "h-6 w-6",
-            })}
-          </div>
-          <div>
-            <Typography variant="h6" className="flex items-center text-sm">
-              {title}
-            </Typography>
-            <Typography variant="small" color="gray" className="font-normal">
-              {description}
-            </Typography>
-          </div>
-        </MenuItem>
-      </a>
-    )
-  );
+//   const renderItems = navListMenuItems.map(
+//     ({ icon, title, description, color }, key) => (
+//       <a href="#" key={key}>
+//         <MenuItem className="flex items-center gap-3 rounded-lg">
+//           <div className={`rounded-lg p-5 ${colors[color]}`}>
+//             {React.createElement(icon, {
+//               strokeWidth: 2,
+//               className: "h-6 w-6",
+//             })}
+//           </div>
+//           <div>
+//             <Typography variant="h6" className="flex items-center text-sm">
+//               {title}
+//             </Typography>
+//             <Typography variant="small" color="gray" className="font-normal">
+//               {description}
+//             </Typography>
+//           </div>
+//         </MenuItem>
+//       </a>
+//     )
+//   );
 
-  return (
-    <React.Fragment>
-      <Menu
-        open={isMenuOpen}
-        handler={setIsMenuOpen}
-        offset={{ mainAxis: 20 }}
-        placement="bottom"
-        allowHover={true}
-      >
-        <MenuHandler>
-          <Typography as="div" variant="small" className="font-normal">
-            {/* <ListItem
-              className="flex items-center gap-2 py-2 pr-4"
-              selected={isMenuOpen || isMobileMenuOpen}
-              onClick={() => setIsMobileMenuOpen((cur) => !cur)}
-            >
-              <Square3Stack3DIcon className="h-[18px] w-[18px]" />
-              Resources
-              <ChevronDownIcon
-                strokeWidth={2.5}
-                className={`hidden h-3 w-3 transition-transform lg:block ${
-                  isMenuOpen ? "rotate-180" : ""
-                }`}
-              />
-              <ChevronDownIcon
-                strokeWidth={2.5}
-                className={`block h-3 w-3 transition-transform lg:hidden ${
-                  isMobileMenuOpen ? "rotate-180" : ""
-                }`}
-              />
-            </ListItem> */}
-          </Typography>
-        </MenuHandler>
-        <MenuList className="hidden max-w-screen-xl rounded-xl lg:block">
-          <ul className="grid grid-cols-4 gap-y-2 gap-x-2">{renderItems}</ul>
-        </MenuList>
-      </Menu>
-      <div className="block lg:hidden">
-        <Collapse open={isMobileMenuOpen}>{renderItems}</Collapse>
-      </div>
-    </React.Fragment>
-  );
-}
+//   return (
+//     <React.Fragment>
+//       <Menu
+//         open={isMenuOpen}
+//         handler={setIsMenuOpen}
+//         offset={{ mainAxis: 20 }}
+//         placement="bottom"
+//         allowHover={true}
+//       >
+//         <MenuHandler>
+//           <Typography as="div" variant="small" className="font-normal">
+//             <ListItem
+//               className="flex items-center gap-2 py-2 pr-4"
+//               selected={isMenuOpen || isMobileMenuOpen}
+//               onClick={() => setIsMobileMenuOpen((cur) => !cur)}
+//             >
+//               <Square3Stack3DIcon className="h-[18px] w-[18px]" />
+//               Resources
+//               <ChevronDownIcon
+//                 strokeWidth={2.5}
+//                 className={`hidden h-3 w-3 transition-transform lg:block ${
+//                   isMenuOpen ? "rotate-180" : ""
+//                 }`}
+//               />
+//               <ChevronDownIcon
+//                 strokeWidth={2.5}
+//                 className={`block h-3 w-3 transition-transform lg:hidden ${
+//                   isMobileMenuOpen ? "rotate-180" : ""
+//                 }`}
+//               />
+//             </ListItem>
+//           </Typography>
+//         </MenuHandler>
+//         <MenuList className="hidden max-w-screen-xl rounded-xl lg:block">
+//           <ul className="grid grid-cols-4 gap-y-2 gap-x-2">{renderItems}</ul>
+//         </MenuList>
+//       </Menu>
+//       <div className="block lg:hidden">
+//         <Collapse open={isMobileMenuOpen}>{renderItems}</Collapse>
+//       </div>
+//     </React.Fragment>
+//   );
+// }
 
 function NavList() {
   return (
-    <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
+    <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 flex gap-4">
       <Typography
         as="a"
         href="#"
@@ -186,7 +186,7 @@ function NavList() {
         color="blue-gray"
         className="font-normal"
       >
-        <ListItem className="flex items-center gap-2 py-2 pr-4">
+        <ListItem className="flex items-center gap-2 py-2 px-2">
           <ShoppingCartIcon className="h-[18px] w-[18px]" />
           Panier
         </ListItem>
@@ -199,13 +199,13 @@ function NavList() {
         color="blue-gray"
         className="font-normal"
       >
-        <ListItem className="flex items-center gap-2 py-2 pr-4">
+        <ListItem className="flex items-center gap-2 py-2 px-2">
           <StarIcon className="h-[18px] w-[18px]" />
           Liste de souhaits
         </ListItem>
       </Typography>
 
-      <NavListMenu />
+      {/* <NavListMenu /> */}
 
       <Typography
         as="a"
@@ -214,7 +214,7 @@ function NavList() {
         color="blue-gray"
         className="font-normal"
       >
-        <ListItem className="flex items-center gap-2 py-2 pr-4">
+        <ListItem className="flex items-center gap-2 py-2 px-2">
           <UserCircleIcon className="h-[18px] w-[18px]" />
           Account
         </ListItem>

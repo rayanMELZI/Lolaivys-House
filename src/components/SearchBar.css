@@ -9,8 +9,8 @@
 }
 
 .search-bar input {
-  width: 350px;
-  background-color: rgb(11, 158, 3) !important;
+  /* width: 350px; */
+  background-color: #0b9e03 !important;
   color: #ffff !important;
   opacity: 0.9;
 }
@@ -21,17 +21,17 @@
   opacity: 1;
 }
 
-.search-bar button {
+/* .search-bar button {
   background-color: rgba(11, 158, 3, 0.9);
 }
 .search-bar button:active {
   background-color: rgba(11, 158, 3, 1);
-}
+} */
 
 .categories {
-  background-color: rgb(11, 158, 3);
+  background-color: #0b9e03;
   color: #ffff;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 .categories:focus {
   opacity: 1;

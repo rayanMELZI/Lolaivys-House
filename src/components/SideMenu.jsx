@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/SideMenu.css";
+import "./SideMenu.css";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 function SideMenu() {

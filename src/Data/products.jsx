@@ -1,8 +1,8 @@
-import monstera from "../assets/monstera.jpg";
-import calathea from "../assets/calathea.jpg";
-import basil from "../assets/basil.jpg";
-import cactus from "../assets/cactus.jpg";
-import pothos from "../assets/pothos.jpg";
+import monstera from "/monstera.jpg";
+import calathea from "/calathea.jpg";
+import basil from "/basil.jpg";
+import cactus from "/cactus.jpg";
+import pothos from "/pothos.jpg";
 
 const products = [
   {

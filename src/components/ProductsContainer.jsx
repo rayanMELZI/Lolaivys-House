@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/ProductsContainer.css";
+import "./ProductsContainer.css";
 import products from "../Data/products.jsx";
 import ProductItem from "./ProductItem.jsx";
 
