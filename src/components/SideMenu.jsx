@@ -2,7 +2,7 @@ import React from "react";
 import "./SideMenu.css";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
-function SideMenu() {
+function SideMenu({ items }) {
   const [isSideMenuOpen, setIsSideMenuOpen] = React.useState(false);
 
   let timeOut;
@@ -53,25 +53,34 @@ function SideMenu() {
           <h1>Panier</h1>
           <div className="panier">
             <ul>
-              {/* 
-              <li>
-                <span className="item">{itemName}</span>
-                <span className="price">{price} DZD</span>
-              </li>
-             */}
-              <li>
+              {items.map((item, index) => {
+                return (
+                  <li key={index}>
+                    <span className="item">{item.itemName}</span>
+                    <span>{item.quantity > 1 && `x${item.quantity}`}</span>
+                    <span className="price">{item.price} DZD</span>
+                  </li>
+                );
+              })}
+
+              {/* <li>
                 <span className="item">Keys</span>
                 <span className="price">300 DZD</span>
               </li>
               <li>
                 <p className="item">pen</p>
                 <p className="price">40 DZD</p>
-              </li>
+              </li> */}
             </ul>
             <li className="total">
               <p className="item">Totale:</p>
-              <p className="price">340 DZD</p>
-              {/*<p className="price">{totalPrice} DZD</p> */}
+              {/* <p className="price">340 DZD</p> */}
+              <p className="price">
+                {items.reduce((prev, curr) => {
+                  return prev + curr.price;
+                }, 0)}{" "}
+                DZD
+              </p>
             </li>
           </div>
           <button className="buy-button">Acheter</button>

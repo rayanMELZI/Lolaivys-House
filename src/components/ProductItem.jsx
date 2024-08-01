@@ -8,15 +8,22 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 
-function ProductItem({ name, price, cover }) {
-  return (
-    // <li className="li">
-    //   <img src={cover} alt={`${name} cover`} />
-    //   <h3>{name}</h3>
-    //   <p>{price} DZD</p>
-    //   <button>Acheter</button>
-    // </li>
+function ProductItem({ name, price, cover, setPanierProducts }) {
+  function handleClick() {
+    setPanierProducts((prev) => {
+      if (
+        prev.some((val) =>
+          String(val).includes({ itemName: name, price: price, quantity: 0 })
+        )
+      ) {
+        return [...prev, { itemName: name, price: price, quantity: 2 }];
+      } else {
+        return [...prev, { itemName: name, price: price, quantity: 1 }];
+      }
+    });
+  }
 
+  return (
     <Card sx={{ maxWidth: 345 }} className="product-item">
       <CardActionArea>
         <CardMedia
@@ -51,8 +58,9 @@ function ProductItem({ name, price, cover }) {
             background-color: rgba(153, 205, 50, 0.1) !important;
             color: rgba(11, 158, 3, 0.8) !important;
           `}
+          onClick={handleClick}
         >
-          Acheter
+          Ajouter au panier
         </Button>
       </CardActions>
     </Card>

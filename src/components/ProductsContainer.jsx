@@ -3,7 +3,7 @@ import "./ProductsContainer.css";
 import products from "../Data/products.jsx";
 import ProductItem from "./ProductItem.jsx";
 
-function ProductsContainer({ searchValue, categoryValue }) {
+function ProductsContainer({ searchValue, categoryValue, setPanierProducts }) {
   let searchError = 0;
 
   return (
@@ -14,7 +14,12 @@ function ProductsContainer({ searchValue, categoryValue }) {
               if (categoryValue === category || categoryValue === "Tous") {
                 return (
                   <div key={id}>
-                    <ProductItem name={name} price={price} cover={cover} />
+                    <ProductItem
+                      name={name}
+                      price={price}
+                      cover={cover}
+                      setPanierProducts={setPanierProducts}
+                    />
                   </div>
                 );
               }
@@ -26,7 +31,12 @@ function ProductsContainer({ searchValue, categoryValue }) {
               ) {
                 return (
                   <div key={id}>
-                    <ProductItem name={name} price={price} cover={cover} />
+                    <ProductItem
+                      name={name}
+                      price={price}
+                      cover={cover}
+                      setPanierProducts={setPanierProducts}
+                    />
                   </div>
                 );
               } else {
