@@ -62,19 +62,9 @@ function SideMenu({ items }) {
                   </li>
                 );
               })}
-
-              {/* <li>
-                <span className="item">Keys</span>
-                <span className="price">300 DZD</span>
-              </li>
-              <li>
-                <p className="item">pen</p>
-                <p className="price">40 DZD</p>
-              </li> */}
             </ul>
             <li className="total">
               <p className="item">Totale:</p>
-              {/* <p className="price">340 DZD</p> */}
               <p className="price">
                 {items.reduce((prev, curr) => {
                   return prev + curr.price;
