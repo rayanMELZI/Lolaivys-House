@@ -1,4 +1,7 @@
 import React from "react";
+
+import { useNavigate } from "react-router-dom";
+
 import "./NavbarWithMegaMenu.css";
 import {
   Navbar,
@@ -177,6 +180,8 @@ const navListMenuItems = [
 // }
 
 function NavList() {
+  const navigate = useNavigate();
+
   return (
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 flex gap-4">
       <Typography
@@ -186,7 +191,12 @@ function NavList() {
         color="blue-gray"
         className="font-normal"
       >
-        <ListItem className="flex items-center gap-2 py-2 px-2">
+        <ListItem
+          className="flex items-center gap-2 py-2 px-2"
+          onClick={() => {
+            navigate("/panier");
+          }}
+        >
           <ShoppingCartIcon className="h-[18px] w-[18px]" />
           Panier
         </ListItem>
@@ -199,7 +209,12 @@ function NavList() {
         color="blue-gray"
         className="font-normal"
       >
-        <ListItem className="flex items-center gap-2 py-2 px-2">
+        <ListItem
+          className="flex items-center gap-2 py-2 px-2"
+          onClick={() => {
+            navigate("/liste_de_souhaits");
+          }}
+        >
           <StarIcon className="h-[18px] w-[18px]" />
           Liste de souhaits
         </ListItem>
@@ -214,9 +229,14 @@ function NavList() {
         color="blue-gray"
         className="font-normal"
       >
-        <ListItem className="flex items-center gap-2 py-2 px-2">
+        <ListItem
+          className="flex items-center gap-2 py-2 px-2"
+          onClick={() => {
+            navigate("/compte");
+          }}
+        >
           <UserCircleIcon className="h-[18px] w-[18px]" />
-          Account
+          Compte
         </ListItem>
       </Typography>
     </List>
@@ -225,6 +245,8 @@ function NavList() {
 
 export function NavbarWithMegaMenu() {
   const [openNav, setOpenNav] = React.useState(false);
+
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     window.addEventListener(
@@ -241,6 +263,9 @@ export function NavbarWithMegaMenu() {
           href="#"
           variant="h6"
           className="mr-4 cursor-pointer py-1.5 lg:ml-2"
+          onClick={() => {
+            navigate("/");
+          }}
         >
           Lolaivy's House
         </Typography>
@@ -249,10 +274,10 @@ export function NavbarWithMegaMenu() {
         </div>
         <div className="hidden gap-2 lg:flex">
           <Button variant="text" size="sm" color="blue-gray">
-            Sign In
+            Se connecter
           </Button>
           <Button variant="gradient" size="sm">
-            Sign Up
+            S'inscrire
           </Button>
         </div>
         <IconButton
@@ -271,10 +296,10 @@ export function NavbarWithMegaMenu() {
       <Collapse open={openNav}>
         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
           <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
-            Sign In
+            Se connecter
           </Button>
           <Button variant="gradient" size="sm" fullWidth>
-            Sign Up
+            S'inscrire
           </Button>
         </div>
       </Collapse>

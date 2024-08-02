@@ -16,7 +16,7 @@ function Shop() {
 
   return (
     <div className="shop">
-      <NavbarWithMegaMenu />
+      {/* <NavbarWithMegaMenu /> */}
       <SideMenu items={panierProducts} />
       <SearchBar
         setCategoryValue={setCategoryValue}
