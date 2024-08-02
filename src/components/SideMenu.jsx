@@ -21,62 +21,72 @@ function SideMenu({ items }) {
   }
 
   return (
-    <>
-      <div
-        className="side-menu"
-        style={{ width: isSideMenuOpen ? "20vw" : "0px" }}
+    <div
+      className="side-menu"
+      style={{ width: isSideMenuOpen ? "20vw" : "0px" }}
+    >
+      <button
+        className="open-close-sidebar-button"
+        style={{ right: isSideMenuOpen ? "-13px" : "-27px" }}
       >
-        <button
-          className="open-close-sidebar-button"
-          style={{ right: isSideMenuOpen ? "-13px" : "-27px" }}
-        >
-          {isSideMenuOpen ? (
-            <XMarkIcon
-              className="h-6 w-6"
-              strokeWidth={2}
-              onClick={() => setIsSideMenuOpen(false)}
-            />
-          ) : (
-            <Bars3Icon
-              className="h-6 w-6"
-              strokeWidth={2}
-              onClick={() => {
-                setIsSideMenuOpen(true);
-                clearTimeout(timeOut);
-              }}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            />
-          )}
-        </button>
-        <div className="side-menu-content">
-          <h1>Panier</h1>
-          <div className="panier">
-            <ul>
-              {items.map((item, index) => {
-                return (
-                  <li key={index}>
-                    <span className="item">{item.itemName}</span>
-                    <span>{item.quantity > 1 && `x${item.quantity}`}</span>
-                    <span className="price">{item.price} DZD</span>
-                  </li>
-                );
-              })}
-            </ul>
-            <li className="total">
-              <p className="item">Totale:</p>
-              <p className="price">
-                {items.reduce((prev, curr) => {
-                  return prev + curr.price;
-                }, 0)}{" "}
-                DZD
-              </p>
-            </li>
-          </div>
-          <button className="buy-button">Acheter</button>
+        {isSideMenuOpen ? (
+          <XMarkIcon
+            className="h-6 w-6"
+            strokeWidth={2}
+            onClick={() => setIsSideMenuOpen(false)}
+          />
+        ) : (
+          <Bars3Icon
+            className="h-6 w-6"
+            strokeWidth={2}
+            onClick={() => {
+              setIsSideMenuOpen(true);
+              clearTimeout(timeOut);
+            }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          />
+        )}
+      </button>
+
+      <div className="side-menu-content">
+        <h1>Panier</h1>
+        <div className="panier">
+          <ul>
+            {items.map((item, index) => {
+              return (
+                <li className="li" key={index}>
+                  <span className="item">
+                    {item.itemName}&emsp;&emsp;
+                    {item.quantity > 1 && `x${item.quantity}`}
+                  </span>
+                  <span className="price">{item.price} DZD</span>
+                </li>
+              );
+            })}
+          </ul>
         </div>
+
+        <div
+          className="panier"
+          style={{
+            alignSelf: "end",
+          }}
+        >
+          <li className="total li">
+            <p className="item">Totale:</p>
+            <p className="price">
+              {items.reduce((prev, curr) => {
+                return prev + curr.price * curr.quantity;
+              }, 0)}{" "}
+              DZD
+            </p>
+          </li>
+        </div>
+
+        <button className="buy-button">Acheter</button>
       </div>
-    </>
+    </div>
   );
 }
 
