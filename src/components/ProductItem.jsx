@@ -57,7 +57,7 @@ function ProductItem({ name, price, cover, setPanierProducts }) {
   }
 
   return (
-    <Card sx={{ maxWidth: 345 }} className="product-item">
+    <Card sx={{ width: 215 }} className="product-item">
       <CardActionArea>
         <CardMedia
           component="img"
