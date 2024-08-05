@@ -1,8 +1,8 @@
-import monstera from "/monstera.jpg";
-import calathea from "/calathea.jpg";
-import basil from "/basil.jpg";
-import cactus from "/cactus.jpg";
-import pothos from "/pothos.jpg";
+import monstera from "/public/monstera.jpg";
+import calathea from "/public/calathea.jpg";
+import basil from "/public/basil.jpg";
+import cactus from "/public/cactus.jpg";
+import pothos from "/public/pothos.jpg";
 
 const products = [
   {
@@ -10,35 +10,35 @@ const products = [
     category: "plant",
     id: "12AB",
     price: 180,
-    cover: monstera,
+    cover: monstera.src,
   },
   {
     name: "ivy",
     category: "object",
     id: "23BC",
     price: 150,
-    cover: calathea,
+    cover: calathea.src,
   },
   {
     name: "yani",
     category: "croissant",
     id: "34CD",
     price: 180,
-    cover: basil,
+    cover: basil.src,
   },
   {
     name: "sparta",
     category: "internet",
     id: "45DE",
     price: 150,
-    cover: cactus,
+    cover: cactus.src,
   },
   {
     name: "ANDY",
     category: "croissant",
     id: "56EF",
     price: 150,
-    cover: pothos,
+    cover: pothos.src,
   },
 ];
 
