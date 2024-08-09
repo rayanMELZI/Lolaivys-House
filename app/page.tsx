@@ -1,24 +1,46 @@
+"use client";
+
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/app/firebase/config";
+import { useRouter } from "next/navigation";
+
 import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code";
-import { button as buttonStyles } from "@nextui-org/theme";
+// import { button as buttonStyles } from "@nextui-org/theme";
+import { Button } from "@nextui-org/button";
 
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
 
-import ProductCard from "../components/ProductCard.tsx";
+import ProductCard from "@/components/ProductCard";
+import Nav from "@/components/navbar2";
+import { signOut } from "firebase/auth";
 
 export default function Home() {
+  const router = useRouter();
+  const [user] = useAuthState(auth);
+  const userSession = sessionStorage.getItem("user");
+
+  console.log(user);
+  console.log(userSession);
+
+  // if (!user && !userSession) {
+  //   router.push("/connecter");
+  // }
+
   return (
-    <div className="flex gap-8 flex-wrap justify-center">
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
+    <div className="relative flex flex-col h-screen">
+      <Nav />
+      <main className="container mx-auto max-w-7xl pt-16 pb-10 px-6 flex-grow">
+        <div className="flex gap-8 flex-wrap justify-center">
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+        </div>
+      </main>
     </div>
   );
 }
