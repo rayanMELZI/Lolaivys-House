@@ -11,6 +11,7 @@
 	"dependencies": {
 		"@nextui-org/avatar": "^2.0.32",
 		"@nextui-org/button": "2.0.37",
+		"@nextui-org/chip": "^2.0.32",
 		"@nextui-org/code": "2.0.32",
 		"@nextui-org/input": "2.2.4",
 		"@nextui-org/kbd": "2.0.33",
@@ -20,7 +21,10 @@
 		"@nextui-org/snippet": "2.0.41",
 		"@nextui-org/switch": "2.0.33",
 		"@nextui-org/system": "2.2.5",
+		"@nextui-org/table": "^2.0.39",
 		"@nextui-org/theme": "2.2.9",
+		"@nextui-org/tooltip": "^2.0.39",
+		"@nextui-org/user": "^2.0.33",
 		"@react-aria/ssr": "3.9.4",
 		"@react-aria/visually-hidden": "3.8.12",
 		"clsx": "2.1.1",
@@ -29,7 +33,8 @@
 		"next": "14.2.4",
 		"next-themes": "^0.2.1",
 		"react": "18.3.1",
-		"react-dom": "18.3.1"
+		"react-dom": "18.3.1",
+		"recharts": "^2.12.7"
 	},
 	"devDependencies": {
 		"@types/node": "20.5.7",

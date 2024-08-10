@@ -6,6 +6,7 @@ import { auth } from "@/app/firebase/config";
 import { useRouter } from "next/navigation";
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
+import { updateProfile } from "firebase/auth";
 
 const Inscrire = () => {
   const [nom, setNom] = useState("");
@@ -25,6 +26,10 @@ const Inscrire = () => {
         alert("Sign-up failed: Invalid credentials or bad request.");
         return; // Early return to prevent further execution
       }
+
+      await updateProfile(res.user, { displayName: `${prenom} ${nom}` }).catch(
+        (err) => console.log(err)
+      );
 
       sessionStorage.setItem("user", "true");
       setNom("");
