@@ -1,7 +1,7 @@
 "use client";
 
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "@/app/firebase/config";
+import { auth, db } from "@/app/firebase/config";
 import { useRouter } from "next/navigation";
 
 import { Link } from "@nextui-org/link";
@@ -14,8 +14,20 @@ import { title, subtitle } from "@/components/primitives";
 import ProductCard from "@/components/ProductCard";
 import Nav from "@/components/navbar2";
 import { signOut } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+
+interface Data {
+  id: string | number;
+  image?: string | undefined;
+  produit: string;
+  prix: number;
+  quantite: number;
+}
+[];
 
 export default function Home() {
+  const [productsData, setProductsData] = useState([]);
   const router = useRouter();
   const [user] = useAuthState(auth);
   const userSession = sessionStorage.getItem("user");
@@ -27,18 +39,41 @@ export default function Home() {
   //   router.push("/connecter");
   // }
 
+  useEffect(() => {
+    (async () => {
+      const colRef = collection(db, "produits");
+      const data = await getDocs(colRef);
+      console.log(data);
+      const formedData: Data = data.docs.map((doc) => {
+        return {
+          id: doc.id,
+          produit: doc.data().produit,
+          prix: doc.data().prix,
+          quantite: doc.data().quantite,
+        };
+      });
+      setProductsData(formedData);
+    })();
+  }, []);
+
   return (
     <div className="relative flex flex-col h-screen">
       <Nav />
       <main className="container mx-auto max-w-7xl pt-16 pb-10 px-6 flex-grow">
         <div className="flex gap-8 flex-wrap justify-center">
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {productsData.map((product) => {
+            if (product.quantite > 0) {
+              //temporary: i better make a style of "rupture de stock"
+              return (
+                <ProductCard
+                  nom={product.produit}
+                  prix={product.prix}
+                  quantite={product.quantite}
+                />
+              );
+            }
+          })}
+          {/* // <ProductCard nom={"Yani"} prix={180} /> */}
         </div>
       </main>
     </div>

@@ -3,7 +3,7 @@ import { Button } from "@nextui-org/button";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/app/firebase/config";
 
-export default function ProductCard() {
+export default function ProductCard({ nom, prix, quantite }) {
   const [user] = useAuthState(auth);
   const userSession = sessionStorage.getItem("user");
 
@@ -18,8 +18,8 @@ export default function ProductCard() {
         />
       </div>
       <div className="flex justify-between px-3 align-center">
-        <h1 className="text-2xl font-[500] pb-1">Yani</h1>
-        <p className=" place-self-center">180 DZD</p>
+        <h1 className="text-2xl font-[500] pb-1">{nom}</h1>
+        <p className=" place-self-center">{prix} DZD</p>
       </div>
       <Button
         size="sm"

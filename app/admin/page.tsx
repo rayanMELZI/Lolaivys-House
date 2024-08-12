@@ -26,26 +26,31 @@ export default function Home() {
       </div>
       <div className="flex gap-10 max-h-[15rem]">
         <Chart />
-        <DataTable
-          columns={["PRODUIT", "PRIX (DZD)", "QUANTITÉ"]}
-          items={[
-            {
-              name: "Lola",
-              price: 180,
-              quantity: 20,
-            },
-            {
-              name: "Lola",
-              price: 180,
-              quantity: 20,
-            },
-            {
-              name: "Lola",
-              price: 180,
-              quantity: 20,
-            },
-          ]}
-        />
+        <div className="w-[80vw]">
+          <h1 className="text-[rgba(11,158,3,0.8)] mb-4">
+            <b>TOP Produits vendus</b>
+          </h1>
+          <DataTable
+            columns={["PRODUIT", "PRIX (DZD)", "QUANTITÉ"]}
+            items={[
+              {
+                name: "Lola",
+                price: 180,
+                quantity: 20,
+              },
+              {
+                name: "Lola",
+                price: 180,
+                quantity: 20,
+              },
+              {
+                name: "Lola",
+                price: 180,
+                quantity: 20,
+              },
+            ]}
+          />
+        </div>
       </div>
     </div>
   );
