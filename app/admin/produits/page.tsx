@@ -9,6 +9,7 @@ import { Button } from "@nextui-org/button";
 import AddProduct from "@/components/AddProduct";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
+import { ReloadIcon } from "@/components/icons/ReloadIcon";
 
 interface Data {
   id: string | number;
@@ -28,25 +29,49 @@ export default function Produit() {
   //   router.push("/connecter");
   // }
 
+  const fetchProductsData = async () => {
+    const colRef = collection(db, "produits");
+    const data = await getDocs(colRef);
+    console.log(data);
+    const formedData: Data = data.docs.map((doc) => {
+      return {
+        id: doc.id,
+        produit: doc.data().produit,
+        prix: doc.data().prix,
+        quantite: doc.data().quantite,
+      };
+    });
+    setProductsData(formedData);
+  };
   useEffect(() => {
-    (async () => {
-      const colRef = collection(db, "produits");
-      const data = await getDocs(colRef);
-      console.log(data);
-      const formedData: Data = data.docs.map((doc) => {
-        return {
-          id: doc.id,
-          produit: doc.data().produit,
-          prix: doc.data().prix,
-          quantite: doc.data().quantite,
-        };
-      });
-      setProductsData(formedData);
-    })();
+    console.log(productsData);
+  }, [productsData]);
+
+  useEffect(() => {
+    // (async () => {
+    //   const colRef = collection(db, "produits");
+    //   const data = await getDocs(colRef);
+    //   console.log(data);
+    //   const formedData: Data = data.docs.map((doc) => {
+    //     return {
+    //       id: doc.id,
+    //       produit: doc.data().produit,
+    //       prix: doc.data().prix,
+    //       quantite: doc.data().quantite,
+    //     };
+    //   });
+    //   setProductsData(formedData);
+    // })();
+    fetchProductsData();
   }, []);
 
   return (
     <div>
+      {/* <div className="flex justify-end">
+        <Button onClick={fetchProductsData} className="m-2">
+          <ReloadIcon />
+        </Button>
+      </div> */}
       <DataTableWithBtns
         columns={[
           // { name: "IMAGE", uid: "image" },
@@ -55,26 +80,19 @@ export default function Produit() {
           { name: "QUANTITÉ", uid: "quantite" },
           { name: "ACTIONS", uid: "actions" },
         ]}
-        items={
-          //   [
-          //   {
-          //     id: 1,
-          //     image: "/basil.jpg",
-          //     produit: "Yani",
-          //     prix: 180,
-          //     quantite: 20,
-          //   },
-          // ]
-          productsData
-        }
+        items={productsData}
+        //   [
+        //   {
+        //     id: 1,
+        //     image: "/basil.jpg",
+        //     produit: "Yani",
+        //     prix: 180,
+        //     quantite: 20,
+        //   },
+        // ]
+        fetchProductsData={fetchProductsData}
       />
-      {/* <Button
-        radius="full"
-        className="bg-gradient-to-tr from-[rgba(11,158,3,0.8)] to-[rgba(153,205,50,0.8)] shadow-lg h-[4rem] opacity-60 hover:opacity-100  absolute bottom-10 right-10"
-      >
-        <p className="h-11 text-white text-3xl font-bold">+</p>
-      </Button> */}
-      <AddProduct />
+      <AddProduct fetchProductsData={fetchProductsData} />
     </div>
   );
 }

@@ -17,7 +17,7 @@ import { addProduct } from "@/utils/firebase";
 
 import { useRouter } from "next/navigation";
 
-export default function AddProduct() {
+export default function AddProduct({ fetchProductsData }) {
   const router = useRouter();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -26,15 +26,20 @@ export default function AddProduct() {
   const [quantite, setQuantite] = useState<number | undefined>();
   //  const [image, setImage] = useState<File | null>(null);
 
-  const handleSumbit = () => {
-    addProduct({ produit: produit, prix: prix, quantite: quantite });
-    onOpenChange(false);
-    setProduit("");
-    setPrix(undefined);
-    setQuantite(undefined);
-
-    // router.refresh();
-    window.location.reload(); //temporary
+  const handleSumbit = async () => {
+    try {
+      onOpenChange();
+      await addProduct({ produit: produit, prix: prix, quantite: quantite });
+      await fetchProductsData();
+      fetchProductsData();
+      setProduit("");
+      setPrix(undefined);
+      setQuantite(undefined);
+      // router.refresh();
+      // window.location.reload(); //temporary
+    } catch (error) {
+      console.error("Failed to update the product:", error);
+    }
   };
 
   useEffect(() => {
@@ -43,9 +48,6 @@ export default function AddProduct() {
 
   return (
     <>
-      {/* <Button onPress={onOpen} color="primary">
-        Open Modal
-      </Button> */}
       <Button
         onPress={onOpen}
         radius="full"
@@ -126,7 +128,7 @@ export default function AddProduct() {
                     ],
                   }}
                   type="file"
-                  labelPlacement="inside"
+                  // labelPlacement="inside"
                 />
               </ModalBody>
               <ModalFooter>

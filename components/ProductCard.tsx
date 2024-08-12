@@ -3,7 +3,14 @@ import { Button } from "@nextui-org/button";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/app/firebase/config";
 
-export default function ProductCard({ nom, prix, quantite }) {
+interface produitProps {
+  nom: string;
+  prix: number;
+  quantite: number;
+  image?: string | undefined;
+}
+
+export default function ProductCard({ nom, prix, quantite }: produitProps) {
   const [user] = useAuthState(auth);
   const userSession = sessionStorage.getItem("user");
 

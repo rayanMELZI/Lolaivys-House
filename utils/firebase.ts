@@ -1,7 +1,13 @@
 "use server";
 
 import { db } from "@/app/firebase/config";
-import { addDoc, collection, deleteDoc, doc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 
 interface propData {
   produit: string;
@@ -23,9 +29,19 @@ const addProduct = async (formData: propData) => {
   });
 };
 
+const updateProduct = async (productID: string, formData: propData) => {
+  const docRef = doc(db, "produits", productID);
+  await updateDoc(docRef, {
+    produit: formData.produit,
+    prix: formData.prix,
+    quantite: formData.quantite,
+    // image: formData.image,
+  });
+};
+
 const deleteProduct = async (productID: string) => {
   const docRef = doc(db, "produits", productID);
   await deleteDoc(docRef);
 };
 
-export { addProduct, deleteProduct };
+export { addProduct, deleteProduct, updateProduct };
