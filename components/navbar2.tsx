@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import {
   Navbar,
@@ -28,7 +28,7 @@ import { signOut } from "firebase/auth";
 
 export default function Nav() {
   const pathname = usePathname();
-
+  const router = useRouter();
   const [user] = useAuthState(auth);
   const userSession = sessionStorage.getItem("user");
 
@@ -156,23 +156,94 @@ export default function Nav() {
               </Link>
             </NavbarItem>
             {/* <NavbarItem>
-          <Link
-            color="foreground"
-            className={
-              pathname === "/panier"
-                ? `text-[rgba(11,158,3,0.8)] font-[500]`
-                : ``
-            }
-            href={!user && !userSession ? "/inscrire" :"/panier"}
-          >
+            <Link
+                color="foreground"
+                className={
+                  pathname === "/panier"
+                    ? `text-[rgba(11,158,3,0.8)] font-[500]`
+                    : ``
+                }
+                href={!user && !userSession ? "/inscrire" : "/panier"}
+              >
             Panier
-          </Link>
-        </NavbarItem> */}
-
+            </Link>
+            </NavbarItem> */}
             <Popover>
-              <PopoverTrigger>Panier</PopoverTrigger>
-              <PopoverContent>
-                Place content for the popover here.
+              <PopoverTrigger
+                className={
+                  pathname === "/panier"
+                    ? `text-[rgba(11,158,3,0.8)] font-[500]`
+                    : ``
+                }
+              >
+                Panier
+              </PopoverTrigger>
+              <PopoverContent className="bg-gradient-to-tr from-[rgba(11,158,3,0.9)] to-[rgba(153,205,50,0.9)] text-white p-0 overflow-hidden">
+                <div className="grid text-center items-center grid-rows-[3rem_auto_3rem_3rem] gap-3 pt-2 pb-5">
+                  <h1 className="font-semibold text-center text-lg">Panier</h1>
+                  {/* <SideMenu
+                  items={[
+                    {
+                      itemName: "Lola",
+                      price: 156,
+                      quantity: 2,
+                    },
+                  ]}
+                /> */}
+                  {/* <div className="bg-[#51ae00]"> */}
+                  <div className="w-full text-white flex flex-col gap-[50px] px-[15px] py-0">
+                    <ul>
+                      {/* {items.map( */}
+                      {/* (
+                      item: {
+                        itemName: string;
+                        quantity: number;
+                          price: number;
+                        },
+                        index: React.Key
+                      ) => {
+                      return ( */}
+
+                      <li className="flex justify-between">
+                        <span className="item">
+                          Lola &emsp;&emsp;
+                          {/* {item.quantity > 1 && `x${item.quantity}`} */}
+                          x3
+                        </span>
+                        <span className="price">180 DZD</span>
+                      </li>
+                      {/* );
+                      }
+                    )} */}
+                    </ul>
+                  </div>
+
+                  <div className="w-full text-white flex flex-col gap-[50px] px-[15px] py-0 self-end">
+                    <li className="justify-self-end flex justify-between">
+                      <p className="item">Totale:</p>
+                      <p className="price">
+                        {/* {items.reduce(
+                        (
+                          prev: number,
+                          curr: { price: number; quantity: number }
+                          ) => {
+                            return prev + curr.price * curr.quantity;
+                          },
+                          0
+                        )}{" "} */}
+                        280 DZD
+                      </p>
+                    </li>
+                  </div>
+                  {/* </div> */}
+
+                  <Button
+                    className="w-[10rem] text-[rgb(11,158,3)] h-7 bg-[#ffffff99] font-semibold justify-self-center self-end hover:bg-[#fff] hover:text-[#000]"
+                    onClick={() => router.push("/panier")}
+                  >
+                    Acheter
+                  </Button>
+                </div>
               </PopoverContent>
             </Popover>
 
