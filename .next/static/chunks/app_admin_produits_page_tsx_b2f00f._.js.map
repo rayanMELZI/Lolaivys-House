@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 5, "column": 0}, "map": {"version":3,"sources":["/turbopack/[project]/OneDrive/Bureau/Programing and other/Web_Dev/project started by me/React/Lolaivy's House/Lolaivy's House/app/admin/produits/page.tsx"],"sourcesContent":["\"use client\";\r\n\r\nimport { useAuthState } from \"react-firebase-hooks/auth\";\r\nimport { auth } from \"@/app/firebase/config\";\r\nimport { useRouter } from \"next/navigation\";\r\n\r\nimport DataTable from \"@/components/DataTable\";\r\n\r\nexport default function Produit() {\r\n  const router = useRouter();\r\n  const [user] = useAuthState(auth);\r\n  const userSession = sessionStorage.getItem(\"user\");\r\n\r\n  return (\r\n    <div>\r\n      <DataTable />\r\n    </div>\r\n  );\r\n}\r\n"],"names":[],"mappings":";;;;;;;;;;;AAAA;;;;;AAQe,SAAS;;IACtB,MAAM,SAAS,CAAA,GAAA,mRAAA,CAAA,YAAS,AAAD;IACvB,MAAM,CAAC,KAAK,GAAG,CAAA,GAAA,6KAAA,CAAA,eAAY,AAAD,EAAE,0QAAA,CAAA,OAAI;IAChC,MAAM,cAAc,eAAe,OAAO,CAAC;IAE3C,qBACE,2UAAC;kBACC,cAAA,2UAAC,yQAAA,CAAA,UAAS;;;;;;;;;;AAGhB;GAVwB;;QACP,mRAAA,CAAA,YAAS;QACT,6KAAA,CAAA,eAAY;;;KAFL"}},
-    {"offset": {"line": 47, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
-}

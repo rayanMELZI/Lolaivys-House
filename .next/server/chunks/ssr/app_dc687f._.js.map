@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 5, "column": 0}, "map": {"version":3,"sources":["/turbopack/[project]/OneDrive/Bureau/Programing and other/Web_Dev/project started by me/React/Lolaivy's House/Lolaivy's House (Next.js)/lolaivys-house/app/providers.tsx"],"sourcesContent":["\"use client\";\n\nimport * as React from \"react\";\nimport { NextUIProvider } from \"@nextui-org/system\";\nimport { useRouter } from \"next/navigation\";\nimport { ThemeProvider as NextThemesProvider } from \"next-themes\";\nimport { ThemeProviderProps } from \"next-themes/dist/types\";\n\nexport interface ProvidersProps {\n  children: React.ReactNode;\n  themeProps?: ThemeProviderProps;\n}\n\nexport function Providers({ children, themeProps }: ProvidersProps) {\n  const router = useRouter();\n\n  return (\n    <NextUIProvider navigate={router.push}>\n      <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>\n    </NextUIProvider>\n  );\n}\n"],"names":[],"mappings":";;;;;;;;AAAA;;;;;AAaO,SAAS,UAAU,EAAE,QAAQ,EAAE,UAAU,EAAkB;IAChE,MAAM,SAAS,CAAA,GAAA,uTAAA,CAAA,YAAS,AAAD;IAEvB,qBACE,6aAAC,4VAAA,CAAA,iBAAc;QAAC,UAAU,OAAO,IAAI;kBACnC,cAAA,6aAAC,8UAAA,CAAA,gBAAkB;YAAE,GAAG,UAAU;sBAAG;;;;;;;;;;;AAG3C"}},
-    {"offset": {"line": 36, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
-}

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 5, "column": 0}, "map": {"version":3,"sources":["/turbopack/[project]/OneDrive/Bureau/Programing and other/Web_Dev/project started by me/React/Lolaivy's House/Lolaivy's House/app/admin/page.tsx"],"sourcesContent":["\"use client\";\r\n\r\nimport { useAuthState } from \"react-firebase-hooks/auth\";\r\nimport { auth } from \"@/app/firebase/config\";\r\n\r\nimport StatisticCard from \"@/components/StatisticCard\";\r\n\r\nexport default function Home() {\r\n  const [user] = useAuthState(auth);\r\n  const userSession = sessionStorage.getItem(\"user\");\r\n\r\n  // if (!user && !userSession) {\r\n  //   router.push(\"/connecter\");\r\n  // }\r\n\r\n  return (\r\n    <div className=\"relative flex flex-col h-screen\">\r\n      <div className=\"flex gap-8 flex-wrap justify-center\">\r\n        <StatisticCard />\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n"],"names":[],"mappings":";;;;;;;;;;AAAA;;;;AAOe,SAAS;;IACtB,MAAM,CAAC,KAAK,GAAG,CAAA,GAAA,6KAAA,CAAA,eAAY,AAAD,EAAE,0QAAA,CAAA,OAAI;IAChC,MAAM,cAAc,eAAe,OAAO,CAAC;IAE3C,+BAA+B;IAC/B,+BAA+B;IAC/B,IAAI;IAEJ,qBACE,2UAAC;QAAI,WAAU;kBACb,cAAA,2UAAC;YAAI,WAAU;sBACb,cAAA,2UAAC,6QAAA,CAAA,UAAa;;;;;;;;;;;;;;;AAItB;GAfwB;;QACP,6KAAA,CAAA,eAAY;;;KADL"}},
-    {"offset": {"line": 54, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
-}
