@@ -1,0 +1,29 @@
+{
+  "node": {
+    "39bdbe6ce0238f02062208f6926b5db9ca75f867": {
+      "workers": {
+        "app/admin/produits/page": "[project]/OneDrive/Bureau/Programing and other/Web_Dev/project started by me/React/Lolaivy's House/Lolaivy's House/.next-internal/server/app/admin/produits/page/actions.js { ACTIONS_MODULE0 => \"[project]/OneDrive/Bureau/Programing and other/Web_Dev/project started by me/React/Lolaivy's House/Lolaivy's House/utils/firebase.ts [app-rsc] (ecmascript, action, ecmascript)\" } [app-rsc] (ecmascript)"
+      },
+      "layer": {
+        "app/admin/produits/page": "actionBrowser"
+      }
+    },
+    "4ea06ebe6496595888de43e7a35c4fb73791ea2e": {
+      "workers": {
+        "app/admin/produits/page": "[project]/OneDrive/Bureau/Programing and other/Web_Dev/project started by me/React/Lolaivy's House/Lolaivy's House/.next-internal/server/app/admin/produits/page/actions.js { ACTIONS_MODULE0 => \"[project]/OneDrive/Bureau/Programing and other/Web_Dev/project started by me/React/Lolaivy's House/Lolaivy's House/utils/firebase.ts [app-rsc] (ecmascript, action, ecmascript)\" } [app-rsc] (ecmascript)"
+      },
+      "layer": {
+        "app/admin/produits/page": "actionBrowser"
+      }
+    },
+    "7766874ada21ce7899c7858820d46c8edb71d45b": {
+      "workers": {
+        "app/admin/produits/page": "[project]/OneDrive/Bureau/Programing and other/Web_Dev/project started by me/React/Lolaivy's House/Lolaivy's House/.next-internal/server/app/admin/produits/page/actions.js { ACTIONS_MODULE0 => \"[project]/OneDrive/Bureau/Programing and other/Web_Dev/project started by me/React/Lolaivy's House/Lolaivy's House/utils/firebase.ts [app-rsc] (ecmascript, action, ecmascript)\" } [app-rsc] (ecmascript)"
+      },
+      "layer": {
+        "app/admin/produits/page": "actionBrowser"
+      }
+    }
+  },
+  "edge": {}
+}

@@ -1,0 +1,12 @@
+const CHUNK_PUBLIC_PATH = "server/app/admin/produits/page.js";
+const runtime = require("../../../chunks/ssr/[turbopack]_runtime.js");
+runtime.loadChunk("server/chunks/ssr/node_modules_next_dist_ec9b5f._.js");
+runtime.loadChunk("server/chunks/ssr/08b5e_undici_52cc14._.js");
+runtime.loadChunk("server/chunks/ssr/08b5e_@firebase_auth_dist_node-esm_b318b8._.js");
+runtime.loadChunk("server/chunks/ssr/08b5e_@grpc_grpc-js_794542._.js");
+runtime.loadChunk("server/chunks/ssr/08b5e_protobufjs_7be5ca._.js");
+runtime.loadChunk("server/chunks/ssr/08b5e_@firebase_firestore_dist_index_node_mjs_27b3c7._.js");
+runtime.loadChunk("server/chunks/ssr/[project]__004669._.js");
+runtime.loadChunk("server/chunks/ssr/[root of the server]__b5b1ad._.js");
+runtime.getOrInstantiateRuntimeModule("[project]/OneDrive/Bureau/Programing and other/Web_Dev/project started by me/React/Lolaivy's House/Lolaivy's House/.next-internal/server/app/admin/produits/page/actions.js { ACTIONS_MODULE0 => \"[project]/OneDrive/Bureau/Programing and other/Web_Dev/project started by me/React/Lolaivy's House/Lolaivy's House/utils/firebase.ts [app-rsc] (ecmascript, action, ecmascript)\" } [app-rsc] (ecmascript)", CHUNK_PUBLIC_PATH);
+module.exports = runtime.getOrInstantiateRuntimeModule("[project]/OneDrive/Bureau/Programing and other/Web_Dev/project started by me/React/Lolaivy's House/Lolaivy's House/node_modules/next/dist/esm/build/templates/app-page.js?page=/admin/produits/page { COMPONENT_0 => \"[project]/OneDrive/Bureau/Programing and other/Web_Dev/project started by me/React/Lolaivy's House/Lolaivy's House/app/layout.tsx [app-rsc] (ecmascript, Next.js server component)\", COMPONENT_1 => \"[project]/OneDrive/Bureau/Programing and other/Web_Dev/project started by me/React/Lolaivy's House/Lolaivy's House/app/error.tsx [app-rsc] (ecmascript, Next.js server component)\", COMPONENT_2 => \"[project]/OneDrive/Bureau/Programing and other/Web_Dev/project started by me/React/Lolaivy's House/Lolaivy's House/node_modules/next/dist/client/components/not-found-error.js [app-rsc] (ecmascript, Next.js server component)\", COMPONENT_3 => \"[project]/OneDrive/Bureau/Programing and other/Web_Dev/project started by me/React/Lolaivy's House/Lolaivy's House/app/admin/layout.tsx [app-rsc] (ecmascript, Next.js server component)\", COMPONENT_4 => \"[project]/OneDrive/Bureau/Programing and other/Web_Dev/project started by me/React/Lolaivy's House/Lolaivy's House/app/admin/produits/page.tsx [app-rsc] (ecmascript, Next.js server component)\" } [app-rsc] (ecmascript) <facade>", CHUNK_PUBLIC_PATH).exports;

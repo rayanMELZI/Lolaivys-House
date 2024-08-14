@@ -1,0 +1,5 @@
+{
+  "/page": "app/page.js",
+  "/(main)/liste_de_souhaits/page": "app/(main)/liste_de_souhaits/page.js",
+  "/(main)/panier/page": "app/(main)/panier/page.js"
+}
