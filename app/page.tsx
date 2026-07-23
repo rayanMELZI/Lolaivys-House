@@ -24,13 +24,13 @@ interface Data {
   prix: number;
   quantite: number;
 }
-[];
 
 export default function Home() {
-  const [productsData, setProductsData] = useState([]);
+  const [productsData, setProductsData] = useState<Data[]>([]);
   const router = useRouter();
   const [user] = useAuthState(auth);
-  const userSession = sessionStorage.getItem("user");
+  const userSession =
+    typeof window !== "undefined" ? sessionStorage.getItem("user") : null;
 
   console.log(user);
   console.log(userSession);
@@ -43,8 +43,7 @@ export default function Home() {
     (async () => {
       const colRef = collection(db, "produits");
       const data = await getDocs(colRef);
-      console.log(data);
-      const formedData: Data = data.docs.map((doc) => {
+      const formedData: Data[] = data.docs.map((doc) => {
         return {
           id: doc.id,
           produit: doc.data().produit,
@@ -63,7 +62,7 @@ export default function Home() {
         <div className="flex gap-8 flex-wrap justify-center">
           {productsData.map((product) => {
             if (product.quantite > 0) {
-              //temporary: i better make a style of "rupture de stock"
+              //temporary: i better make a style of "rupture de stock" <==============================================
               return (
                 <ProductCard
                   nom={product.produit}

@@ -12,7 +12,8 @@ interface produitProps {
 
 export default function ProductCard({ nom, prix, quantite }: produitProps) {
   const [user] = useAuthState(auth);
-  const userSession = sessionStorage.getItem("user");
+  const userSession =
+    typeof window !== "undefined" ? sessionStorage.getItem("user") : null;
 
   return (
     <div className="w-[14rem] h-[345px] rounded flex flex-col justify-between pb-2 bg-[#fff] overflow-hidden shadow-[0px_1px_2px_#888]">

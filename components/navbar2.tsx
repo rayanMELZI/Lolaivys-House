@@ -30,7 +30,8 @@ export default function Nav() {
   const pathname = usePathname();
   const router = useRouter();
   const [user] = useAuthState(auth);
-  const userSession = sessionStorage.getItem("user");
+  const userSession =
+    typeof window !== "undefined" ? sessionStorage.getItem("user") : null;
 
   const deconnecter = () => {
     signOut(auth);
@@ -155,19 +156,7 @@ export default function Nav() {
                 Shop
               </Link>
             </NavbarItem>
-            {/* <NavbarItem>
-            <Link
-                color="foreground"
-                className={
-                  pathname === "/panier"
-                    ? `text-[rgba(11,158,3,0.8)] font-[500]`
-                    : ``
-                }
-                href={!user && !userSession ? "/inscrire" : "/panier"}
-              >
-            Panier
-            </Link>
-            </NavbarItem> */}
+
             <Popover>
               <PopoverTrigger
                 className={

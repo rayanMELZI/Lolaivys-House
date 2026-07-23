@@ -11,7 +11,8 @@ import { useRouter } from "next/navigation";
 export default function Home() {
   const router = useRouter();
   const [user] = useAuthState(auth);
-  const userSession = sessionStorage.getItem("user");
+  const userSession =
+    typeof window !== "undefined" ? sessionStorage.getItem("user") : null;
 
   if (!user && !userSession) {
     router.push("/connecter");
