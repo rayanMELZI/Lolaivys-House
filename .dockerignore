@@ -1,0 +1,17 @@
+node_modules
+.next
+.git
+.github
+.vscode
+k8s
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+*.pem
+coverage
+README.md
+Dockerfile
+.dockerignore
+.env*.local
+*.tsbuildinfo
