@@ -17,7 +17,11 @@ import { addProduct } from "@/utils/firebase";
 
 import { useRouter } from "next/navigation";
 
-export default function AddProduct({ fetchProductsData }) {
+interface AddProductProps {
+  fetchProductsData: () => void | Promise<void>;
+}
+
+export default function AddProduct({ fetchProductsData }: AddProductProps) {
   const router = useRouter();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -82,8 +86,8 @@ export default function AddProduct({ fetchProductsData }) {
                 <Input
                   type="number"
                   label="Prix"
-                  value={prix}
-                  onValueChange={setPrix}
+                  value={prix?.toString() ?? ""}
+                  onValueChange={(v) => setPrix(v === "" ? undefined : Number(v))}
                   variant="bordered"
                   classNames={{
                     inputWrapper: [
@@ -102,8 +106,10 @@ export default function AddProduct({ fetchProductsData }) {
                   //   isInvalid={value < 0}
                   type="number"
                   label="Quantité"
-                  value={quantite}
-                  onValueChange={setQuantite}
+                  value={quantite?.toString() ?? ""}
+                  onValueChange={(v) =>
+                    setQuantite(v === "" ? undefined : Number(v))
+                  }
                   variant="bordered"
                   classNames={{
                     inputWrapper: [

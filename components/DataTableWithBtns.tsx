@@ -40,6 +40,7 @@ interface props {
     prix: number;
     quantite: number;
   }[];
+  fetchProductsData: () => void | Promise<void>;
 }
 export default function DataTableWithBtns({
   columns,
@@ -184,8 +185,8 @@ export default function DataTableWithBtns({
                 <Input
                   type="number"
                   label="Prix"
-                  value={prix}
-                  onValueChange={setPrix}
+                  value={prix?.toString() ?? ""}
+                  onValueChange={(v) => setPrix(v === "" ? undefined : Number(v))}
                   variant="bordered"
                   classNames={{
                     inputWrapper: [
@@ -204,8 +205,10 @@ export default function DataTableWithBtns({
                   //   isInvalid={value < 0}
                   type="number"
                   label="Quantité"
-                  value={quantite}
-                  onValueChange={setQuantite}
+                  value={quantite?.toString() ?? ""}
+                  onValueChange={(v) =>
+                    setQuantite(v === "" ? undefined : Number(v))
+                  }
                   variant="bordered"
                   classNames={{
                     inputWrapper: [
