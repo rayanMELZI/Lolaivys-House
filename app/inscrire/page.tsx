@@ -8,6 +8,8 @@ import { Button } from "@nextui-org/button";
 import Link from "next/link";
 import { updateProfile } from "firebase/auth";
 
+import { createUserDocument } from "@/utils/firebase";
+
 const Inscrire = () => {
   const [nom, setNom] = useState("");
   const [prenom, setPrenom] = useState("");
@@ -30,6 +32,9 @@ const Inscrire = () => {
       await updateProfile(res.user, { displayName: `${prenom} ${nom}` }).catch(
         (err) => console.log(err)
       );
+
+      const user = { uid: res.user.uid };
+      createUserDocument(user);
 
       sessionStorage.setItem("user", "true");
       setNom("");

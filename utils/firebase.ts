@@ -44,4 +44,26 @@ const deleteProduct = async (productID: string) => {
   await deleteDoc(docRef);
 };
 
-export { addProduct, deleteProduct, updateProduct };
+const createUserDocument = async (user: any) => {
+  try {
+    const defaultProfilePictureUrl =
+      "gs://lolaivys-house.appspot.com/defaultPFP.png";
+
+    // await db.collection("utilisateurs").doc(user.uid).set({
+    //   photo: defaultProfilePictureUrl,
+    // });
+    await addDoc(collection(db, "utilisateurs"), {
+      photo: defaultProfilePictureUrl,
+    }); // GHALTAAAAAA  MARAHICH DIR ID == USER.UID <============================================================
+    // const collRef = collection(db, "utilisateurs");
+    // await addDoc(collRef, {
+    //   photo: defaultProfilePictureUrl,
+    // });
+
+    console.log("User document created successfully");
+  } catch (error) {
+    console.error("Error creating user document:", error);
+  }
+};
+
+export { addProduct, deleteProduct, updateProduct, createUserDocument };
