@@ -18,10 +18,9 @@ interface Data {
   prix: number;
   quantite: number;
 }
-[];
 
 export default function Produit() {
-  const [productsData, setProductsData] = useState<Data>([]);
+  const [productsData, setProductsData] = useState<Data[]>([]);
   // const router = useRouter();
   // const [user] = useAuthState(auth);
   // const userSession = sessionStorage.getItem("user");
@@ -32,8 +31,7 @@ export default function Produit() {
   const fetchProductsData = async () => {
     const colRef = collection(db, "produits");
     const data = await getDocs(colRef);
-    console.log(data);
-    const formedData: Data = data.docs.map((doc) => {
+    const formedData: Data[] = data.docs.map((doc) => {
       return {
         id: doc.id,
         produit: doc.data().produit,
