@@ -11,8 +11,8 @@ import {
 
 interface propData {
   produit: string;
-  prix: number;
-  quantite: number;
+  prix?: number;
+  quantite?: number;
   image?: string;
 }
 
