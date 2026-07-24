@@ -11,7 +11,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 export default function Compte() {
   const [user] = useAuthState(auth);
-  const userSession = sessionStorage.getItem("user");
+  const userSession =
+    typeof window !== "undefined" ? sessionStorage.getItem("user") : null;
 
   const [nomComplet, setNomComplet] = useState(user?.displayName || "");
   const [userEmail, setUserEmail] = useState(user?.email || "");
@@ -27,7 +28,7 @@ export default function Compte() {
   useEffect(() => {
     if (
       nomComplet !== user?.displayName ||
-      userEmail !== user.email ||
+      userEmail !== user?.email ||
       userPassword !== ""
     ) {
       setBtnsDisabled(false);
@@ -117,6 +118,7 @@ export default function Compte() {
             isDisabled={btnsDisabled}
             className="bg-gradient-to-tr from-[rgba(11,158,3,0.8)] to-[rgba(153,205,50,0.8)] shadow-lg text-white font-semibold"
             onClick={() => {
+              if (!user) return;
               try {
                 let updated = false;
                 if (nomComplet !== user?.displayName) {

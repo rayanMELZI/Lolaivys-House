@@ -1,8 +1,9 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Next.js + NextUI",
-  description: "Make beautiful websites regardless of your design experience.",
+  name: "Lolaivy's House",
+  description:
+    "Lolaivy's House — votre boutique de plantes et d'herbes fraîches.",
   navItems: [
     {
       label: "Shop",
@@ -20,50 +21,26 @@ export const siteConfig = {
       label: "Compte",
       href: "/compte",
     },
-    // {
-    //   label: "About",
-    //   href: "/about",
-    // },
   ],
   navMenuItems: [
     {
-      label: "Profile",
-      href: "/profile",
+      label: "Compte",
+      href: "/compte",
     },
     {
-      label: "Dashboard",
-      href: "/dashboard",
+      label: "Panier",
+      href: "/panier",
     },
     {
-      label: "Projects",
-      href: "/projects",
+      label: "Liste de souhaits",
+      href: "/liste_de_souhaits",
     },
     {
-      label: "Team",
-      href: "/team",
-    },
-    {
-      label: "Calendar",
-      href: "/calendar",
-    },
-    {
-      label: "Settings",
-      href: "/settings",
-    },
-    {
-      label: "Help & Feedback",
-      href: "/help-feedback",
-    },
-    {
-      label: "Logout",
-      href: "/logout",
+      label: "Panneau d'administration",
+      href: "/admin",
     },
   ],
   links: {
-    github: "https://github.com/nextui-org/nextui",
-    twitter: "https://twitter.com/getnextui",
-    docs: "https://nextui.org",
-    discord: "https://discord.gg/9b6yyZKmH4",
-    sponsor: "https://patreon.com/jrgarciadev",
+    github: "https://github.com/rayanMELZI/Lolaivys-House",
   },
 };

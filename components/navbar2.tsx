@@ -26,11 +26,15 @@ import {
 import { Avatar } from "@nextui-org/avatar";
 import { signOut } from "firebase/auth";
 
+import { useCart } from "@/context/CartContext";
+
 export default function Nav() {
   const pathname = usePathname();
   const router = useRouter();
   const [user] = useAuthState(auth);
-  const userSession = sessionStorage.getItem("user");
+  const cart = useCart();
+  const userSession =
+    typeof window !== "undefined" ? sessionStorage.getItem("user") : null;
 
   const deconnecter = () => {
     signOut(auth);
@@ -96,9 +100,9 @@ export default function Nav() {
                   as="button"
                   className="transition-transform"
                   color="success"
-                  name="Jason Hughes"
+                  name={user?.displayName || user?.email || "Compte"}
                   size="sm"
-                  src="https://alternative.me/images/avatars/default.png"
+                  src={user?.photoURL || undefined}
                 />
               </DropdownTrigger>
               <DropdownMenu aria-label="Profile Actions" variant="flat">
@@ -155,19 +159,7 @@ export default function Nav() {
                 Shop
               </Link>
             </NavbarItem>
-            {/* <NavbarItem>
-            <Link
-                color="foreground"
-                className={
-                  pathname === "/panier"
-                    ? `text-[rgba(11,158,3,0.8)] font-[500]`
-                    : ``
-                }
-                href={!user && !userSession ? "/inscrire" : "/panier"}
-              >
-            Panier
-            </Link>
-            </NavbarItem> */}
+
             <Popover>
               <PopoverTrigger
                 className={
@@ -177,71 +169,52 @@ export default function Nav() {
                 }
               >
                 Panier
+                {cart.totalItems > 0 && (
+                  <span className="ml-1 inline-flex items-center justify-center text-xs bg-[rgba(11,158,3,0.9)] text-white rounded-full h-5 min-w-5 px-1">
+                    {cart.totalItems}
+                  </span>
+                )}
               </PopoverTrigger>
-              <PopoverContent className="bg-gradient-to-tr from-[rgba(11,158,3,0.9)] to-[rgba(153,205,50,0.9)] text-white p-0 overflow-hidden">
-                <div className="grid text-center items-center grid-rows-[3rem_auto_3rem_3rem] gap-3 pt-2 pb-5">
+              <PopoverContent className="bg-gradient-to-tr from-[rgba(11,158,3,0.9)] to-[rgba(153,205,50,0.9)] text-white p-0 overflow-hidden w-[18rem]">
+                <div className="flex flex-col gap-3 pt-2 pb-5 w-full">
                   <h1 className="font-semibold text-center text-lg">Panier</h1>
-                  {/* <SideMenu
-                  items={[
-                    {
-                      itemName: "Lola",
-                      price: 156,
-                      quantity: 2,
-                    },
-                  ]}
-                /> */}
-                  {/* <div className="bg-[#51ae00]"> */}
-                  <div className="w-full text-white flex flex-col gap-[50px] px-[15px] py-0">
-                    <ul>
-                      {/* {items.map( */}
-                      {/* (
-                      item: {
-                        itemName: string;
-                        quantity: number;
-                          price: number;
-                        },
-                        index: React.Key
-                      ) => {
-                      return ( */}
 
-                      <li className="flex justify-between">
-                        <span className="item">
-                          Lola &emsp;&emsp;
-                          {/* {item.quantity > 1 && `x${item.quantity}`} */}
-                          x3
-                        </span>
-                        <span className="price">180 DZD</span>
-                      </li>
-                      {/* );
-                      }
-                    )} */}
-                    </ul>
-                  </div>
+                  {cart.items.length === 0 ? (
+                    <p className="text-center text-sm px-4 py-6 text-white/90">
+                      Votre panier est vide.
+                    </p>
+                  ) : (
+                    <>
+                      <ul className="w-full flex flex-col gap-2 px-[15px] max-h-[14rem] overflow-y-auto">
+                        {cart.items.map((item) => (
+                          <li key={item.id} className="flex justify-between">
+                            <span className="item">
+                              {item.produit}
+                              {item.cartQuantity > 1 &&
+                                ` ×${item.cartQuantity}`}
+                            </span>
+                            <span className="price">
+                              {item.prix * item.cartQuantity} DZD
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
 
-                  <div className="w-full text-white flex flex-col gap-[50px] px-[15px] py-0 self-end">
-                    <li className="justify-self-end flex justify-between">
-                      <p className="item">Totale:</p>
-                      <p className="price">
-                        {/* {items.reduce(
-                        (
-                          prev: number,
-                          curr: { price: number; quantity: number }
-                          ) => {
-                            return prev + curr.price * curr.quantity;
-                          },
-                          0
-                        )}{" "} */}
-                        280 DZD
-                      </p>
-                    </li>
-                  </div>
-                  {/* </div> */}
+                      <div className="w-full px-[15px]">
+                        <div className="flex justify-between border-t border-white/40 pt-2 font-semibold">
+                          <p>Totale:</p>
+                          <p>{cart.totalPrice} DZD</p>
+                        </div>
+                      </div>
+                    </>
+                  )}
 
                   <Button
-                    className="w-[10rem] text-[rgb(11,158,3)] h-7 bg-[#ffffff99] font-semibold justify-self-center self-end hover:bg-[#fff] hover:text-[#000]"
+                    isDisabled={cart.items.length === 0}
+                    className="w-[10rem] text-[rgb(11,158,3)] h-7 bg-[#ffffff99] font-semibold self-center hover:bg-[#fff] hover:text-[#000]"
                     onClick={() => router.push("/panier")}
                   >
-                    Acheter
+                    Voir le panier
                   </Button>
                 </div>
               </PopoverContent>

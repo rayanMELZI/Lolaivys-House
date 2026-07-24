@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lolaivys-house
+  namespace: lolaivys-house
+spec:
+  ingressClassName: traefik
+  rules:
+    # TLS + public DNS are handled by the Cloudflare Tunnel in front of the
+    # cluster. Traefik does host-based routing on plain :80. Hostnames are
+    # case-insensitive, so this serves LolaivysHouse.rayanemelzi.dev.
+    - host: lolaivyshouse.rayanemelzi.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: lolaivys-house
+                port:
+                  number: 80
