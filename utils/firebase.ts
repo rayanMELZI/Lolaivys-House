@@ -17,26 +17,25 @@ interface propData {
 }
 
 const addProduct = async (formData: propData) => {
-  //   const products = await firebase.firestore().collection("products").get();
-  //   return products.docs.map((doc) => doc.data());
-
   const collRef = collection(db, "produits");
-  addDoc(collRef, {
+  await addDoc(collRef, {
     produit: formData.produit,
     prix: formData.prix,
     quantite: formData.quantite,
-    // image: formData.image,
+    image: formData.image ?? null,
   });
 };
 
 const updateProduct = async (productID: string, formData: propData) => {
   const docRef = doc(db, "produits", productID);
-  await updateDoc(docRef, {
+  const data: { [key: string]: string | number | undefined } = {
     produit: formData.produit,
     prix: formData.prix,
     quantite: formData.quantite,
-    // image: formData.image,
-  });
+  };
+  // Only overwrite the image when a new one was provided.
+  if (formData.image !== undefined) data.image = formData.image;
+  await updateDoc(docRef, data);
 };
 
 const deleteProduct = async (productID: string) => {
