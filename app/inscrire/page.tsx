@@ -33,8 +33,11 @@ const Inscrire = () => {
         (err) => console.log(err)
       );
 
-      const user = { uid: res.user.uid };
-      createUserDocument(user);
+      await createUserDocument({
+        uid: res.user.uid,
+        nom: `${prenom} ${nom}`.trim(),
+        email: res.user.email,
+      });
 
       sessionStorage.setItem("user", "true");
       setNom("");
@@ -59,14 +62,14 @@ const Inscrire = () => {
           className="w-full p-3 mb-4 shadow-[0px_2px_10px_#eee] rounded outline-none placeholder-gray-500"
         />
         <input
-          type="email"
+          type="text"
           placeholder="Prénom"
           value={prenom}
           onChange={(e) => setPrenom(e.target.value)}
           className="w-full p-3 mb-4 shadow-[0px_2px_10px_#eee] rounded outline-none placeholder-gray-500"
         />
         <input
-          type="text"
+          type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}

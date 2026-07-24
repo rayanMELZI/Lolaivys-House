@@ -6,6 +6,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  setDoc,
   updateDoc,
 } from "firebase/firestore";
 
@@ -43,21 +44,25 @@ const deleteProduct = async (productID: string) => {
   await deleteDoc(docRef);
 };
 
-const createUserDocument = async (user: any) => {
+interface NewUser {
+  uid: string;
+  nom?: string;
+  email?: string | null;
+}
+
+const createUserDocument = async (user: NewUser) => {
   try {
     const defaultProfilePictureUrl =
-      "gs://lolaivys-house.appspot.com/defaultPFP.png";
+      "https://alternative.me/images/avatars/default.png";
 
-    // await db.collection("utilisateurs").doc(user.uid).set({
-    //   photo: defaultProfilePictureUrl,
-    // });
-    await addDoc(collection(db, "utilisateurs"), {
+    // Use the auth uid as the document id so the profile is addressable.
+    await setDoc(doc(db, "utilisateurs", user.uid), {
+      uid: user.uid,
+      nom: user.nom ?? "",
+      email: user.email ?? "",
       photo: defaultProfilePictureUrl,
-    }); // GHALTAAAAAA  MARAHICH DIR ID == USER.UID <============================================================
-    // const collRef = collection(db, "utilisateurs");
-    // await addDoc(collRef, {
-    //   photo: defaultProfilePictureUrl,
-    // });
+      createdAt: Date.now(),
+    });
 
     console.log("User document created successfully");
   } catch (error) {
