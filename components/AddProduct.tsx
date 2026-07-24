@@ -14,35 +14,42 @@ import { Input } from "@nextui-org/input";
 import { Divider } from "@nextui-org/divider";
 
 import { addProduct } from "@/utils/firebase";
-
-import { useRouter } from "next/navigation";
+import { uploadProductImage } from "@/utils/storage";
 
 interface AddProductProps {
   fetchProductsData: () => void | Promise<void>;
 }
 
 export default function AddProduct({ fetchProductsData }: AddProductProps) {
-  const router = useRouter();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const [produit, setProduit] = useState<string>("");
   const [prix, setPrix] = useState<number | undefined>();
   const [quantite, setQuantite] = useState<number | undefined>();
-  //  const [image, setImage] = useState<File | null>(null);
+  const [image, setImage] = useState<File | null>(null);
+  const [saving, setSaving] = useState(false);
 
   const handleSumbit = async () => {
     try {
-      onOpenChange();
-      await addProduct({ produit: produit, prix: prix, quantite: quantite });
+      setSaving(true);
+      const imageUrl = image ? await uploadProductImage(image) : undefined;
+      await addProduct({
+        produit: produit,
+        prix: prix,
+        quantite: quantite,
+        image: imageUrl,
+      });
       await fetchProductsData();
-      fetchProductsData();
       setProduit("");
       setPrix(undefined);
       setQuantite(undefined);
-      // router.refresh();
-      // window.location.reload(); //temporary
+      setImage(null);
+      onOpenChange();
     } catch (error) {
-      console.error("Failed to update the product:", error);
+      console.error("Failed to add the product:", error);
+      alert("Échec de l'ajout du produit.");
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -124,7 +131,6 @@ export default function AddProduct({ fetchProductsData }: AddProductProps) {
 
                 <Input
                   label="Image"
-                  //   placeholder="Ajouter l'image du produit"
                   variant="bordered"
                   classNames={{
                     inputWrapper: [
@@ -134,16 +140,23 @@ export default function AddProduct({ fetchProductsData }: AddProductProps) {
                     ],
                   }}
                   type="file"
-                  // labelPlacement="inside"
+                  accept="image/*"
+                  onChange={(e) => setImage(e.target.files?.[0] ?? null)}
                 />
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="flat" onPress={onClose}>
+                <Button
+                  color="danger"
+                  variant="flat"
+                  onPress={onClose}
+                  isDisabled={saving}
+                >
                   Annuler
                 </Button>
                 <Button
                   className="bg-[rgba(153,205,50,0.3)] text-[rgba(11,158,3,0.8)]"
                   onPress={handleSumbit}
+                  isLoading={saving}
                 >
                   Ajouter
                 </Button>

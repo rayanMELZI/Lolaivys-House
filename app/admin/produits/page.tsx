@@ -37,6 +37,7 @@ export default function Produit() {
         produit: doc.data().produit,
         prix: doc.data().prix,
         quantite: doc.data().quantite,
+        image: doc.data().image ?? undefined,
       };
     });
     setProductsData(formedData);
