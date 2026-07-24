@@ -1,57 +1,36 @@
 "use client";
 
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, db } from "@/app/firebase/config";
-import { useRouter } from "next/navigation";
-
-import { Link } from "@nextui-org/link";
-// import { button as buttonStyles } from "@nextui-org/theme";
-import { Button } from "@nextui-org/button";
-
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
+import { db } from "@/app/firebase/config";
 
 import ProductCard from "@/components/ProductCard";
 import Nav from "@/components/navbar2";
-import { signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 
-interface Data {
-  id: string | number;
-  image?: string | undefined;
-  produit: string;
-  prix: number;
-  quantite: number;
-}
+import { Product } from "@/types";
 
 export default function Home() {
-  const [productsData, setProductsData] = useState<Data[]>([]);
-  const router = useRouter();
-  const [user] = useAuthState(auth);
-  const userSession =
-    typeof window !== "undefined" ? sessionStorage.getItem("user") : null;
-
-  console.log(user);
-  console.log(userSession);
-
-  // if (!user && !userSession) {
-  //   router.push("/connecter");
-  // }
+  const [productsData, setProductsData] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
-      const colRef = collection(db, "produits");
-      const data = await getDocs(colRef);
-      const formedData: Data[] = data.docs.map((doc) => {
-        return {
+      try {
+        const colRef = collection(db, "produits");
+        const data = await getDocs(colRef);
+        const formedData: Product[] = data.docs.map((doc) => ({
           id: doc.id,
           produit: doc.data().produit,
           prix: doc.data().prix,
           quantite: doc.data().quantite,
-        };
-      });
-      setProductsData(formedData);
+          image: doc.data().image ?? undefined,
+        }));
+        setProductsData(formedData);
+      } catch (err) {
+        console.error("Failed to load products:", err);
+      } finally {
+        setLoading(false);
+      }
     })();
   }, []);
 
@@ -59,20 +38,15 @@ export default function Home() {
     <div className="relative flex flex-col h-screen">
       <Nav />
       <main className="container mx-auto max-w-7xl pt-16 pb-10 px-6 flex-grow">
+        {!loading && productsData.length === 0 && (
+          <p className="text-center text-default-500 mt-10">
+            Aucun produit disponible pour le moment.
+          </p>
+        )}
         <div className="flex gap-8 flex-wrap justify-center">
-          {productsData.map((product) => {
-            if (product.quantite > 0) {
-              //temporary: i better make a style of "rupture de stock" <==============================================
-              return (
-                <ProductCard
-                  nom={product.produit}
-                  prix={product.prix}
-                  quantite={product.quantite}
-                />
-              );
-            }
-          })}
-          {/* // <ProductCard nom={"Yani"} prix={180} /> */}
+          {productsData.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
         </div>
       </main>
     </div>
